@@ -1,15 +1,8 @@
-// ═══════════════════════════════════════════════════════════════
-// LEADERBOARD SETUP — takes 2 minutes, do this once:
-//
-//  1. Go to https://jsonbin.io → Sign up free
-//  2. Click "CREATE BIN" → paste  []  → click Save
-//  3. Copy the Bin ID shown in the URL bar (looks like: 6849f3...)
-//  4. Click "API KEYS" in left sidebar → copy the Master Key
-//  5. Paste both below and save this file → push to GitHub
-// ═══════════════════════════════════════════════════════════════
+// Global game and server settings
+// Supabase cloud database keys for unlimited 24/7 leaderboard services
 export const CONFIG = {
-  JSONBIN_BIN_ID:  '6a5798a1da38895dfe61585e',
-  JSONBIN_API_KEY: '$2a$10$2GppwKlUcPQC7TNJ8wULQO8AeGpibuD3n/rJdjVS8v7yT08N4AlDK',
+  SUPABASE_URL: 'https://nhybmmozbdrguyeenztq.supabase.co',
+  SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5oeWJtbW96YmRyZ3V5ZWVuenRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQxMjEwNTMsImV4cCI6MjA5OTY5NzA1M30.5Ga-Z8jS5yCO8WU7SaZBJQXexuTNY5yENloIQnWtLA0',
   DEFAULT_PLAYER_NAME: 'CyberPlayer',
   MAX_SCORES: 10,
   GAME: {

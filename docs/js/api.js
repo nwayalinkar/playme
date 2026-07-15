@@ -1,26 +1,41 @@
 import { CONFIG } from './config.js';
 
-const BASE_URL = `https://api.jsonbin.io/v3/b/${CONFIG.JSONBIN_BIN_ID}`;
+// Parses the Supabase URL and appends the correct REST endpoint
+const getBaseUrl = () => {
+  let url = CONFIG.SUPABASE_URL.trim();
+  if (url.endsWith('/')) {
+    url = url.slice(0, -1);
+  }
+  // If user pasted raw domain, append the rest/v1 paths
+  if (!url.endsWith('/rest/v1')) {
+    url = `${url}/rest/v1`;
+  }
+  return `${url}/scores`;
+};
+
+const BASE_URL = getBaseUrl();
 const HEADERS = {
   'Content-Type': 'application/json',
-  'X-Master-Key': CONFIG.JSONBIN_API_KEY
+  'apikey': CONFIG.SUPABASE_KEY,
+  'Authorization': `Bearer ${CONFIG.SUPABASE_KEY}`
 };
 
 /**
- * Fetches all high scores from JSONBin cloud storage.
+ * Fetches all high scores from Supabase cloud database.
  * @returns {Promise<Array>} Sorted array of score objects.
  */
 export async function getScores() {
-  if (CONFIG.JSONBIN_BIN_ID === 'PASTE_YOUR_BIN_ID_HERE') {
-    console.warn('JSONBin not configured. See js/config.js for setup instructions.');
-    return [];
-  }
   try {
-    const response = await fetch(`${BASE_URL}/latest`, { headers: HEADERS });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
-    const scores = Array.isArray(data.record) ? data.record : [];
-    return scores.sort((a, b) => b.score - a.score).slice(0, CONFIG.MAX_SCORES);
+    const response = await fetch(`${BASE_URL}?select=name,score,date&order=score.desc,date.desc&limit=${CONFIG.MAX_SCORES}`, {
+      method: 'GET',
+      headers: HEADERS
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    return await response.json();
   } catch (error) {
     console.error('Failed to fetch scores:', error);
     throw error;
@@ -28,37 +43,31 @@ export async function getScores() {
 }
 
 /**
- * Submits a new score to JSONBin cloud storage.
- * Reads current scores, appends new one, sorts and trims, then saves.
+ * Submits a new score to Supabase database.
  * @param {string} name - Player name.
  * @param {number} score - Score value.
  */
 export async function submitScore(name, score) {
-  if (CONFIG.JSONBIN_BIN_ID === 'PASTE_YOUR_BIN_ID_HERE') {
-    throw new Error('JSONBin not configured. See js/config.js for setup instructions.');
-  }
   try {
-    // 1. Read existing scores
-    const existing = await getScores();
-
-    // 2. Append new entry
-    const newEntry = {
-      name: String(name).trim().slice(0, 15),
-      score: parseInt(score, 10),
-      date: new Date().toISOString()
-    };
-    const updated = [...existing, newEntry]
-      .sort((a, b) => b.score - a.score)
-      .slice(0, CONFIG.MAX_SCORES);
-
-    // 3. PUT full array back to JSONBin
     const response = await fetch(BASE_URL, {
-      method: 'PUT',
-      headers: HEADERS,
-      body: JSON.stringify(updated)
+      method: 'POST',
+      headers: {
+        ...HEADERS,
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify({
+        name: String(name).trim().slice(0, 15),
+        score: parseInt(score, 10)
+      })
     });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    return newEntry;
+    
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      throw new Error(errData.message || `HTTP error! status: ${response.status}`);
+    }
+    
+    const result = await response.json();
+    return result[0];
   } catch (error) {
     console.error('Failed to submit score:', error);
     throw error;
