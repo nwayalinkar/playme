@@ -8,8 +8,8 @@
 //  5. Paste both below and save this file → push to GitHub
 // ═══════════════════════════════════════════════════════════════
 export const CONFIG = {
-  JSONBIN_BIN_ID:  'PASTE_YOUR_BIN_ID_HERE',   // e.g. '6849f3abc123456789'
-  JSONBIN_API_KEY: 'PASTE_YOUR_MASTER_KEY_HERE', // e.g. '$2a$10$abc...'
+  JSONBIN_BIN_ID:  '6a5798a1da38895dfe61585e',
+  JSONBIN_API_KEY: '$2a$10$2GppwKlUcPQC7TNJ8wULQO8AeGpibuD3n/rJdjVS8v7yT08N4AlDK',
   DEFAULT_PLAYER_NAME: 'CyberPlayer',
   MAX_SCORES: 10,
   GAME: {
