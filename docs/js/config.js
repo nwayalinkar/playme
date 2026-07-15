@@ -1,15 +1,15 @@
-// Global game and server settings
-// ─────────────────────────────────────────────────────────────
-// Scores are stored in a free JSONBin.io "bin" (cloud JSON storage).
-// HOW TO SET UP (one-time, takes 2 minutes):
-//   1. Go to https://jsonbin.io → Create a free account
-//   2. Click "Create Bin" → paste: []  → Save
-//   3. Copy the Bin ID from the URL and paste it as JSONBIN_BIN_ID below
-//   4. Go to API Keys → copy your Master Key → paste as JSONBIN_API_KEY below
-// ─────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// LEADERBOARD SETUP — takes 2 minutes, do this once:
+//
+//  1. Go to https://jsonbin.io → Sign up free
+//  2. Click "CREATE BIN" → paste  []  → click Save
+//  3. Copy the Bin ID shown in the URL bar (looks like: 6849f3...)
+//  4. Click "API KEYS" in left sidebar → copy the Master Key
+//  5. Paste both below and save this file → push to GitHub
+// ═══════════════════════════════════════════════════════════════
 export const CONFIG = {
-  JSONBIN_BIN_ID: 'PASTE_YOUR_BIN_ID_HERE',
-  JSONBIN_API_KEY: 'PASTE_YOUR_MASTER_KEY_HERE',
+  JSONBIN_BIN_ID:  'PASTE_YOUR_BIN_ID_HERE',   // e.g. '6849f3abc123456789'
+  JSONBIN_API_KEY: 'PASTE_YOUR_MASTER_KEY_HERE', // e.g. '$2a$10$abc...'
   DEFAULT_PLAYER_NAME: 'CyberPlayer',
   MAX_SCORES: 10,
   GAME: {
