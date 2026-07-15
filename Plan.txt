@@ -1,0 +1,30 @@
+Phase 1: Local Setup & Testing (All on your laptop)
+Before putting anything online, you will make sure the game and the server can talk to each other on your own machine.
+
+Step 1: Create a folder on your laptop for your game files (HTML/CSS/JS) and another folder for your server files (Python).
+
+Step 2: Write a simple game interface in HTML.
+
+Step 3: Write a Python script using Flask that is programmed to receive data and write it to a local file (like a .json or .txt file) on your hard drive.
+
+Step 4: Run the Python server locally, open the HTML file in your browser, and test if saving a score successfully creates the data file on your laptop.
+
+Phase 2: Host the Game on GitHub
+Now that it works locally, you want the game to be playable from a real web link.
+
+Step 1: Create a new repository on GitHub.
+
+Step 2: Upload only your frontend HTML game files to GitHub.
+
+Note: Keep your Python script on your laptop. GitHub Pages only hosts static web pages; it cannot run Python scripts.
+
+Step 3: Turn on GitHub Pages in your repository settings to generate your custom game link.
+
+Phase 3: Bridge the Gap (Making your laptop accessible)
+Because your game is now live on the internet (via GitHub), it can no longer find your laptop using a "local" address. You need to give your laptop a temporary public address.
+
+Step 1: Run your Python server on your laptop.
+
+Step 2: Start a tunneling tool (like ngrok or LocalTunnel) in your terminal. This tool acts as a secure bridge, giving your running Python server a temporary public web link (URL).
+
+Step 3: Update the web address inside your GitHub HTML file to point to this new public tunnel link instead of localhost.

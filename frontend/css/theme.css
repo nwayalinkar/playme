@@ -1,0 +1,63 @@
+/* CSS Variables & Theme Setup */
+:root {
+  --font-heading: 'Orbitron', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  /* Colors */
+  --bg-primary: #0a0a0f;
+  --bg-card: rgba(18, 18, 29, 0.7);
+  --bg-card-hover: rgba(28, 28, 45, 0.85);
+  
+  --color-text: #e2e8f0;
+  --color-muted: #718096;
+  
+  /* Cyber Neon Accents */
+  --neon-pink: #ff007f;
+  --neon-cyan: #00f0ff;
+  --neon-green: #39ff14;
+  --neon-yellow: #ffdf00;
+  
+  /* Glowing Shadows */
+  --glow-pink: 0 0 10px rgba(255, 0, 127, 0.5), 0 0 20px rgba(255, 0, 127, 0.2);
+  --glow-cyan: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.2);
+  --glow-green: 0 0 10px rgba(57, 255, 20, 0.5), 0 0 20px rgba(57, 255, 20, 0.2);
+  
+  /* Glassmorphism Border */
+  --border-glass: 1px solid rgba(255, 255, 255, 0.08);
+  
+  /* Animations */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Custom Scrollbar for side list */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-muted);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+}

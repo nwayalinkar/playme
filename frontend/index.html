@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Neon Breaker – Cyber Retro Arcade</title>
+  <meta name="description" content="A premium modular neon-retro Brick Breaker game connecting to cloud high score storage. Play, smash bricks, and climb the cyberpunk leaderboard!" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  
+  <!-- Fonts Integration -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet" />
+  
+  <!-- Modular Style Sheet Stack -->
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/game.css" />
+  <link rel="stylesheet" href="css/ui.css" />
+</head>
+<body>
+
+  <div class="dashboard-container">
+    <!-- Left Section: Game Screen -->
+    <section class="left-panel">
+      <header>
+        <h1>Neon Breaker</h1>
+        <p>Cyber Retro Arcade</p>
+      </header>
+
+      <div class="game-container">
+        <!-- HUD Panel -->
+        <div class="hud-panel">
+          <div class="hud-item hud-score">
+            <label>Score</label>
+            <span id="hudScore">000,000</span>
+          </div>
+          <div class="hud-item hud-lives">
+            <label>Lives</label>
+            <span id="hudLives">3</span>
+          </div>
+          <div class="hud-item hud-level">
+            <label>Level</label>
+            <span id="hudLevel">1</span>
+          </div>
+        </div>
+
+        <!-- Canvas Game Screen -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- Canvas Overlays -->
+        <!-- Start Game Overlay -->
+        <div class="canvas-overlay" id="startOverlay">
+          <div class="overlay-title">Ready Player One</div>
+          <div class="overlay-subtitle">Control paddle with your mouse or Arrow Keys / A & D</div>
+          <button class="btn btn-primary" id="startGameBtn">Start Game</button>
+        </div>
+
+        <!-- Game Over Overlay -->
+        <div class="canvas-overlay hidden" id="gameoverOverlay">
+          <div class="overlay-title game-over">Game Over</div>
+          <div class="overlay-subtitle">Final Score: <span id="finalScore" style="color: var(--neon-pink); font-weight: bold;">0</span></div>
+          <div style="display: flex; gap: 1rem;">
+            <button class="btn btn-secondary" id="restartGameBtn">Play Again</button>
+            <button class="btn btn-green" id="submitScoreBtn">Submit Score</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls & Help Hint -->
+      <footer class="controls-hint">
+        <div>🖱 Mouse / Drag finger</div>
+        <div>⌨ <span>Arrows</span> or <span>A / D</span></div>
+        <div>⏸ <span>P</span> = Pause</div>
+        <div>📱 Tap canvas to start</div>
+      </footer>
+    </section>
+
+    <!-- Right Section: Player Profile & Leaderboard Dashboard -->
+    <aside class="right-panel">
+      <!-- Player Profile Configuration -->
+      <section class="form-group">
+        <label for="usernameInput">Cyber Alias</label>
+        <div class="input-container">
+          <input type="text" id="usernameInput" placeholder="Enter your alias" maxlength="15" autocomplete="off" />
+          <button class="btn btn-primary" id="saveNameBtn">Set</button>
+        </div>
+      </section>
+
+      <!-- High Score Leaderboard List -->
+      <section class="leaderboard-panel">
+        <div class="leaderboard-header">
+          <h2>Leaderboard</h2>
+          <button id="refreshScoresBtn" class="refresh-btn" title="Refresh High Scores" aria-label="Refresh Scores">⟳</button>
+        </div>
+        <ul id="leaderboardList" class="leaderboard-list">
+          <li class="empty-state">Loading scores...</li>
+        </ul>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Toast Alerts Floating Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Entry Script (ES Modules) -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Score data (local only - lives in JSONBin cloud on production)
+backend/data/scores.json
+
+# OS
+.DS_Store
+Thumbs.db
